@@ -1,12 +1,12 @@
-import MovieId from "./movie_id";
-import MovieFormat from "./movie_format";
-import MovieUrl from "./movie_url";
-import MovieSaveName from "./movie_savename";
+import Id from "./_id";
+import Format from "./_format";
+import Url from "./_url";
+import SaveName from "./_savename";
 
 
 export {
-    MovieId,
-    MovieUrl,
-    MovieFormat,
-    MovieSaveName
+    Id,
+    Url,
+    Format,
+    SaveName
 }

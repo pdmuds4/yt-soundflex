@@ -1,19 +1,19 @@
-import { MovieId, MovieUrl, MovieFormat, MovieSaveName } from "./value_object";
+import { Id, Url, Format, SaveName } from "./value_object";
 import type { MovieJsonType } from "./jsonType";
 
 export default class MovieEntity {
     private constructor(
-        private readonly _id     : MovieId,
-        private          _url    : MovieUrl,
-        private          format  : MovieFormat,
-        private          savename: MovieSaveName
+        private readonly _id        : Id,
+        private          _url       : Url,
+        private          format     : Format,
+        private          savename   : SaveName,
     ) {}
 
-    set changeFormat(format: MovieFormat) {
+    set changeFormat(format: Format) {
         this.format = format
     }
 
-    set changeSaveName(savename: MovieSaveName) {
+    set changeSaveName(savename: SaveName) {
         this.savename = savename
     }
     
@@ -22,7 +22,7 @@ export default class MovieEntity {
             id      : this._id.value,
             url     : this._url.value,
             format  : this.format.value,
-            savename: this.savename.value
+            savename: this.savename.value,
         }
     }
 }
