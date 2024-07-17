@@ -1,4 +1,4 @@
-export default class MovieUrl {
+export default class ConvertInfoUrl {
     private readonly _value: string;
 
     constructor(value: string) {
@@ -7,8 +7,8 @@ export default class MovieUrl {
 
     // APIでバリデーションチェックを行なっているが、二重にかけておく
     private validate(value: string): string {
-        if (!value.includes('youtube.com'))  throw new Error('MovieUrl must contain [youtube.com]');
-        if (!value.includes('youtu.be'))     throw new Error('MovieUrl must contain [youtu.be]');
+        if (!value.includes('youtube.com'))  throw new Error('ConvertInfoUrl must contain [youtube.com]');
+        if (!value.includes('youtu.be'))     throw new Error('ConvertInfoUrl must contain [youtu.be]');
         
         return value;
     }

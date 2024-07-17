@@ -1,4 +1,4 @@
-export default class MovieSaveName {
+export default class ConvertInfoSaveName {
     private readonly _value: string;
 
     constructor(value: string) {

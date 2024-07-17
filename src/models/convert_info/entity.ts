@@ -1,7 +1,7 @@
 import { Id, Url, Format, SaveName } from "./value_object";
-import type { MovieJsonType } from "./jsonType";
+import type { ConvertInfoJsonType } from "./jsonType";
 
-export default class MovieEntity {
+export default class ConvertInfoEntity {
     private constructor(
         private readonly _id        : Id,
         private          _url       : Url,
@@ -17,7 +17,7 @@ export default class MovieEntity {
         this.savename = savename
     }
     
-    get json(): MovieJsonType {
+    get json(): ConvertInfoJsonType {
         return {
             id      : this._id.value,
             url     : this._url.value,

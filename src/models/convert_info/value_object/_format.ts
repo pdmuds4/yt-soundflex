@@ -1,4 +1,4 @@
-export default class MovieFormat {
+export default class ConvertInfoFormat {
     private readonly _value: 'mp3'| 'ogg' | 'wav' | 'mp4a';
 
     constructor(value: 'mp3'| 'ogg' | 'wav' | 'mp4a') {
