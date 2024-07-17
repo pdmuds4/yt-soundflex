@@ -8,7 +8,7 @@ export default class YoutubeInfoEntity {
         private _channel_name: string
     ) {}
 
-    get json(): YoutubeInfoJsonType {
+    json(): YoutubeInfoJsonType {
         return {
             title       : this._title,
             thumnail_src: this._thumnail_src,

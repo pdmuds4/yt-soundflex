@@ -16,7 +16,7 @@ export default class ConvertInfoEntity {
         this.savename = savename
     }
     
-    get json(): ConvertInfoJsonType {
+    json(): ConvertInfoJsonType {
         return {
             url     : this._url.value,
             format  : this.format.value,
