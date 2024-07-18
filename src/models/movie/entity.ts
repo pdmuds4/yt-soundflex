@@ -1,7 +1,7 @@
 import Id from './_id';
 import YoutubeInfo from '../youtube_info/entity';
 import ConvertInfo from '../convert_info/entity';
-import type { MovieJsonType } from './JsonType';
+import type { MovieJsonType } from './jsonType';
 
 export default class MovieEntity {
     constructor(
