@@ -3,7 +3,7 @@ import type { ConvertInfoJsonType } from "./jsonType";
 
 export default class ConvertInfoEntity {
     private constructor(
-        private          _url       : Url,
+        private readonly _url       : Url,
         private          format     : Format,
         private          savename   : SaveName,
     ) {}

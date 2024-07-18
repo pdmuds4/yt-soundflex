@@ -6,8 +6,8 @@ import type { MovieJsonType } from './jsonType';
 export default class MovieEntity {
     constructor(
         private readonly _id: Id,
-        private          _youtube_info: YoutubeInfo,
-        private          _convert_info: ConvertInfo
+        private readonly _youtube_info: YoutubeInfo,
+        private readonly _convert_info: ConvertInfo
     ){}
     
     getId(): Id {
