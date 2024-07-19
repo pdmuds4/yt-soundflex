@@ -1,15 +1,18 @@
 import { Button, ChakraProvider, Input, InputGroup, InputRightElement } from "@chakra-ui/react";
 import { Search2Icon } from "@chakra-ui/icons";
-import { s__searchBtn } from "./style";
 
 const SearchForm: React.FC = () => {
     return (
         <InputGroup width={{base: '100%', md: '50%'}}>
-            <Input placeholder='https://www.youtube.com/...' />
-            <InputRightElement sx={s__searchBtn}>
+            <Input 
+                placeholder='https://www.youtube.com/...'
+                focusBorderColor='#ff0026'
+            />
+            <InputRightElement width='30%'>
                 <Button 
-                    colorScheme='red' 
-                    width={'100%'}
+                    colorScheme='red'
+                    size='sm'
+                    width='90%'
                     rightIcon={<Search2Icon />}
                     // onClick={}
                 >検索</Button>
