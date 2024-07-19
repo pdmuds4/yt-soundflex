@@ -11,9 +11,14 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@chakra-ui/next-js": "^2.2.0",
+    "@chakra-ui/react": "^2.8.2",
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
     "@ffmpeg/ffmpeg": "^0.12.10",
     "@ffmpeg/util": "^0.12.1",
     "axios": "^1.7.2",
+    "framer-motion": "^11.3.7",
     "next": "14.2.5",
     "react": "^18",
     "react-dom": "^18"
