@@ -6,10 +6,11 @@ export default class ConvertInfoUrl {
     }
 
     // APIでバリデーションチェックを行なっているが、二重にかけておく
+    // API側はそのURLが存在するかまでを確認している
     private validate(value: string): string {
-        if (!value.includes('youtube.com'))  throw new Error('ConvertInfoUrl must contain [youtube.com]');
-        if (!value.includes('youtu.be'))     throw new Error('ConvertInfoUrl must contain [youtu.be]');
-        
+        const is_youtube_url = value.includes('youtube.com') || value.includes('youtu.be')
+        if (!is_youtube_url)  throw new Error('ConvertInfoUrl must contain [youtube.com] or [youtu.be]');
+
         return value;
     }
 
