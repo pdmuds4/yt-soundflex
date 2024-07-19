@@ -10,15 +10,15 @@ export default class MovieEntity {
         private readonly _convert_info: ConvertInfo
     ){}
     
-    getId(): Id {
-        return this._id;
+    get id(): Id["value"] {
+        return this._id.value;
     }
 
-    getYoutubeInfo(): YoutubeInfo {
+    get youtubeInfo(): YoutubeInfo {
         return this._youtube_info;
     }
 
-    getConvertInfo(): ConvertInfo {
+    get convertInfo(): ConvertInfo {
         return this._convert_info;
     }
 

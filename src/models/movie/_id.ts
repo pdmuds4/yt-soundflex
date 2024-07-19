@@ -9,7 +9,6 @@ export default class MovieId {
         if (value < 0)                throw new Error('ID must be positive number');
         if (!Number.isInteger(value)) throw new Error('ID must be integer'        );
         if (isNaN(value))             throw new Error('ID must be not NaN'        );
-        if (isFinite(value))          throw new Error('ID must be not infinite'   );
         
         return value;
     }
