@@ -20,14 +20,14 @@ const MoviesTable: React.FC = () => {
     );
 }
 
-// export default MoviesTable;
-
-const DebugMoviesTable: React.FC = () => {
-    return (
-        <ChakraProvider>
-            <MoviesTable />
-        </ChakraProvider>
-    );
-}
-
 export default MoviesTable;
+
+// const DebugMoviesTable: React.FC = () => {
+//     return (
+//         <ChakraProvider>
+//             <MoviesTable />
+//         </ChakraProvider>
+//     );
+// }
+
+// export default DebugMoviesTable;

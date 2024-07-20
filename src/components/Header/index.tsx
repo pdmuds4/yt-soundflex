@@ -19,14 +19,14 @@ const Header: React.FC = () => {
     );
 }
 
-//export default Header;
+export default Header;
 
-const DebugHeader: React.FC = () => {
-    return (
-        <ChakraProvider>
-            <Header />
-        </ChakraProvider>
-    );
-}
+// const DebugHeader: React.FC = () => {
+//     return (
+//         <ChakraProvider>
+//             <Header />
+//         </ChakraProvider>
+//     );
+// }
 
-export default DebugHeader;
+// export default DebugHeader;

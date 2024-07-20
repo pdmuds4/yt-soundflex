@@ -28,14 +28,14 @@ const Preview: React.FC = () => {
     )
 }
 
-// export default Preview;
+export default Preview;
 
-const DebugPreview: React.FC = () => {
-    return (
-        <ChakraProvider>
-            <Preview />
-        </ChakraProvider>
-    )
-}
+// const DebugPreview: React.FC = () => {
+//     return (
+//         <ChakraProvider>
+//             <Preview />
+//         </ChakraProvider>
+//     )
+// }
 
-export default DebugPreview;
+// export default DebugPreview;

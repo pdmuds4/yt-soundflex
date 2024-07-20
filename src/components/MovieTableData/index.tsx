@@ -43,14 +43,14 @@ const MovieTableData: React.FC = () => {
     );
 }
 
-// export default MovieTableData;
+export default MovieTableData;
 
-const DebugMovieTableData: React.FC = () => {
-    return (
-        <ChakraProvider>
-            <MovieTableData />
-        </ChakraProvider>
-    );
-}
+// const DebugMovieTableData: React.FC = () => {
+//     return (
+//         <ChakraProvider>
+//             <MovieTableData />
+//         </ChakraProvider>
+//     );
+// }
 
-export default DebugMovieTableData;
+// export default DebugMovieTableData;

@@ -21,14 +21,14 @@ const SearchForm: React.FC = () => {
     )
 }
 
-// export default SearchForm;
+export default SearchForm;
 
-const DebugSearchForm: React.FC = () => {
-    return (
-        <ChakraProvider>
-            <SearchForm />
-        </ChakraProvider>
-    )
-}
+// const DebugSearchForm: React.FC = () => {
+//     return (
+//         <ChakraProvider>
+//             <SearchForm />
+//         </ChakraProvider>
+//     )
+// }
 
-export default DebugSearchForm;
+// export default DebugSearchForm;

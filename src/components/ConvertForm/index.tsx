@@ -46,14 +46,14 @@ const ConvertForm: React.FC = () => {
     )
 }
 
-// export default ConvertForm;
+export default ConvertForm;
 
-const DebugConvertForm: React.FC = () => {
-    return (
-        <ChakraProvider>
-            <ConvertForm />
-        </ChakraProvider>
-    )
-}
+// const DebugConvertForm: React.FC = () => {
+//     return (
+//         <ChakraProvider>
+//             <ConvertForm />
+//         </ChakraProvider>
+//     )
+// }
 
-export default DebugConvertForm;
+// export default DebugConvertForm;
