@@ -1,6 +1,6 @@
 "use client";
 import { Box, Grid, GridItem } from '@chakra-ui/react';
-import { Header, SearchForm, Preview, ConvertForm, MoviesTable } from '@component';
+import { Header, SetMovieForm, MoviesTable } from '@component';
 
 const Index: React.FC = () => {
 	return (
@@ -15,9 +15,7 @@ const Index: React.FC = () => {
 					gap={5}
 				>
 					<GridItem>
-						<SearchForm onSearch={(url)=>console.log(url)} />
-						<Preview />
-						<ConvertForm />
+						<SetMovieForm />
 					</GridItem>
 					<GridItem>
 						<MoviesTable />

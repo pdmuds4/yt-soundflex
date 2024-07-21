@@ -1,26 +1,19 @@
 import { ChakraProvider, Stack, Input, Select, Grid, GridItem, Button } from "@chakra-ui/react";
 import { ArrowDownIcon, RepeatIcon } from "@chakra-ui/icons";
 
-const ConvertForm: React.FC = () => {
+import UrlForm from "./UrlForm";
+import Preview from "./Preview";
+import SaveNameForm from "./SavenameForm";
+import FormatForm from "./FormatForm";
+
+const SetMovieForm: React.FC = () => {
     return (
         <Stack spacing={4}>
-            <Input
-                type="text"
-                // value={}
-                placeholder="保存ファイル名を入力" 
-                focusBorderColor='#ff0026'
-                // onChange={}
-            />
-            <Select 
-                placeholder="保存フォーマットを選択"
-                focusBorderColor='#ff0026'
-                // onChange={}
-            >
-                <option value='mp3'>mp3</option>
-                <option value='ogg'>ogg</option>
-                <option value='wav'>wav</option>
-                <option value='mp4a'>mp4a</option>
-            </Select>
+            <UrlForm onSearch={(url)=>console.log(url)} />
+            <Preview />
+            <SaveNameForm />
+            <FormatForm />
+            
             <Grid templateColumns='repeat(2, 1fr)' gap={4}>
                 <GridItem>
                     <Button 
@@ -46,14 +39,14 @@ const ConvertForm: React.FC = () => {
     )
 }
 
-export default ConvertForm;
+export default SetMovieForm;
 
-// const DebugConvertForm: React.FC = () => {
+// const DebugSetMovieForm: React.FC = () => {
 //     return (
 //         <ChakraProvider>
-//             <ConvertForm />
+//             <SetMovieForm />
 //         </ChakraProvider>
 //     )
 // }
 
-// export default DebugConvertForm;
+// export default DebugSetMovieForm;

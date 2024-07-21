@@ -5,7 +5,7 @@ import { Search2Icon } from "@chakra-ui/icons";
 import { ConvertInfoJsonType } from '@domain/convert_info/jsonType';
 
 type UrlType = ConvertInfoJsonType['url'];
-const SearchForm: React.FC<{
+const UrlForm: React.FC<{
     onSearch: (url: UrlType) => void;
 }> = (props) => {
     const errorToast = useToast();
@@ -46,14 +46,14 @@ const SearchForm: React.FC<{
     )
 }
 
-export default SearchForm;
+export default UrlForm;
 
-// const DebugSearchForm: React.FC = () => {
+// const DebugUrlForm: React.FC = () => {
 //     return (
 //         <ChakraProvider>
-//             <SearchForm />
+//             <UrlForm />
 //         </ChakraProvider>
 //     )
 // }
 
-// export default DebugSearchForm;
+// export default DebugUrlForm;
