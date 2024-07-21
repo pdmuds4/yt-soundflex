@@ -9,9 +9,9 @@ import FormatForm from "./FormatForm";
 const SetMovieForm: React.FC = () => {
     return (
         <Stack spacing={4}>
-            <UrlForm onSearch={(url)=>console.log(url)} />
+            <UrlForm onSearch={(url)=>console.log(url)} btnIsLoading={false}/>
             <Preview />
-            <SaveNameForm />
+            <SaveNameForm onSetValue={(savename) => console.log(savename)} isDisabled={false}/>
             <FormatForm />
             
             <Grid templateColumns='repeat(2, 1fr)' gap={4}>

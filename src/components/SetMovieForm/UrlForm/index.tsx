@@ -7,6 +7,7 @@ import { ConvertInfoJsonType } from '@domain/convert_info/jsonType';
 type UrlType = ConvertInfoJsonType['url'];
 const UrlForm: React.FC<{
     onSearch: (url: UrlType) => void;
+    btnIsLoading: boolean;
 }> = (props) => {
     const errorToast = useToast();
     const [input_url, setInputValue] = useState<UrlType>('');
@@ -40,6 +41,8 @@ const UrlForm: React.FC<{
                             });
                         }
                     }}
+                    isLoading={props.btnIsLoading}
+                    loadingText='検索中...'
                 >検索</Button>
             </InputRightElement>
         </InputGroup>
