@@ -19,7 +19,7 @@
       }
     ],
     "paths": {
-      "@component/*": ["./src/components/*"],
+      "@component": ["./src/components"],
       "@util/*": ["./src/utils/*"],
       "@domain/*": ["./src/models/*"],
       "@usecase/*": ["./src/service/*"],
