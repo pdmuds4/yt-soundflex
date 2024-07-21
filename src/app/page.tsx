@@ -15,7 +15,7 @@ const Index: React.FC = () => {
 					gap={5}
 				>
 					<GridItem>
-						<SearchForm />
+						<SearchForm onSearch={(url)=>console.log(url)} />
 						<Preview />
 						<ConvertForm />
 					</GridItem>
