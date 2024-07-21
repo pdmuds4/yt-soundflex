@@ -3,7 +3,7 @@ import { ArrowDownIcon, RepeatIcon } from "@chakra-ui/icons";
 
 const ConvertForm: React.FC = () => {
     return (
-        <Stack spacing={4} width={{base: '100%', md: '50%'}}>
+        <Stack spacing={4}>
             <Input
                 type="text"
                 // value={}

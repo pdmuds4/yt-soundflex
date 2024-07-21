@@ -3,7 +3,7 @@ import { Search2Icon } from "@chakra-ui/icons";
 
 const SearchForm: React.FC = () => {
     return (
-        <InputGroup width={{base: '100%', md: '50%'}}>
+        <InputGroup>
             <Input 
                 placeholder='https://www.youtube.com/...'
                 focusBorderColor='#ff0026'

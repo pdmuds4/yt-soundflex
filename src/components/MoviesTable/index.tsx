@@ -2,7 +2,7 @@ import { ChakraProvider, TableContainer, Table, Thead, Tbody, Tr, Th } from "@ch
 
 const MoviesTable: React.FC = () => {
     return (
-        <TableContainer width={{base: '100%', md: '50%'}}>
+        <TableContainer>
             <Table size='sm' variant='striped'>
                 <Thead>
                     <Tr>
