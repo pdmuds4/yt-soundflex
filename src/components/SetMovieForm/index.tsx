@@ -12,7 +12,7 @@ const SetMovieForm: React.FC = () => {
             <UrlForm onSearch={(url)=>console.log(url)} btnIsLoading={false}/>
             <Preview />
             <SaveNameForm onSetValue={(savename) => console.log(savename)} isDisabled={false}/>
-            <FormatForm />
+            <FormatForm onSetValue={(savename) => console.log(savename)} isDisabled={false}/>
             
             <Grid templateColumns='repeat(2, 1fr)' gap={4}>
                 <GridItem>

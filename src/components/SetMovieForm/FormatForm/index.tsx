@@ -1,12 +1,19 @@
 import { Select } from "@chakra-ui/react";
+import { ConvertInfoJsonType } from "@domain/convert_info/jsonType";
 
-const FormatForm:React.FC = () => {
+type FormatType = ConvertInfoJsonType['format'];
+const FormatForm:React.FC<{
+    isDisabled: boolean;
+    onSetValue: (savename: FormatType) => void;
+}> = (props) => {
     return (
         <Select 
-            placeholder="保存フォーマットを選択"
+            
             focusBorderColor='#ff0026'
-            // onChange={}
+            onChange={(e)=>props.onSetValue(e.target.value as FormatType)}
+            isDisabled={props.isDisabled}
         >
+            <option hidden selected>保存フォーマットを選択</option>
             <option value='mp3'>mp3</option>
             <option value='ogg'>ogg</option>
             <option value='wav'>wav</option>
