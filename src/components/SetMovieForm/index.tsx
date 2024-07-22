@@ -40,7 +40,8 @@ const SetMovieForm: React.FC = () => {
                         // onClick = {}
                     >リストに追加</Button>
                 </GridItem>
-                {/* <GridItem>
+                { // [TODO]親から子内のイベントを発火させる方法を検討
+                /* <GridItem>
                     <Button 
                         w='100%' 
                         size='md'
