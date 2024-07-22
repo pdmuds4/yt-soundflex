@@ -8,6 +8,7 @@ const FormatForm:React.FC<{
 }> = (props) => {
     return (
         <Select
+            defaultValue={''}
             focusBorderColor='#ff0026'
             onChange={(e)=>props.onSetValue(e.target.value as FormatType)}
             isDisabled={props.isDisabled}
