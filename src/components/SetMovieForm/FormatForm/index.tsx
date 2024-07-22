@@ -12,7 +12,7 @@ const FormatForm:React.FC<{
             onChange={(e)=>props.onSetValue(e.target.value as FormatType)}
             isDisabled={props.isDisabled}
         >
-            <option hidden selected>保存フォーマットを選択</option>
+            <option value='' hidden>保存フォーマットを選択</option>
             <option value='mp3'>mp3</option>
             <option value='ogg'>ogg</option>
             <option value='wav'>wav</option>

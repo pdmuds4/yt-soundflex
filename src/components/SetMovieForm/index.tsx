@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { ChakraProvider, Stack, Grid, GridItem, Button } from "@chakra-ui/react";
 import { ArrowDownIcon, RepeatIcon } from "@chakra-ui/icons";
 
@@ -7,6 +8,8 @@ import SaveNameForm from "./SavenameForm";
 import FormatForm from "./FormatForm";
 
 const SetMovieForm: React.FC = () => {
+    const [youtube_info, setYoutubeInfo] = useState({});
+
     return (
         <Stack spacing={4}>
             <UrlForm 
@@ -27,7 +30,7 @@ const SetMovieForm: React.FC = () => {
                 isDisabled={false}
             />
             
-            <Grid templateColumns='repeat(2, 1fr)' gap={4}>
+            <Grid templateColumns='repeat(1, 1fr)' gap={4}>
                 <GridItem>
                     <Button 
                         w='100%' 
@@ -37,7 +40,7 @@ const SetMovieForm: React.FC = () => {
                         // onClick = {}
                     >リストに追加</Button>
                 </GridItem>
-                <GridItem>
+                {/* <GridItem>
                     <Button 
                         w='100%' 
                         size='md'
@@ -46,7 +49,7 @@ const SetMovieForm: React.FC = () => {
                         rightIcon={<RepeatIcon />}
                         // onClick = {}
                     >リセット</Button>
-                </GridItem>
+                </GridItem> */}
             </Grid>
         </Stack>
     )
