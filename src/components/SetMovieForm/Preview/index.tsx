@@ -9,13 +9,14 @@ const Preview: React.FC<Partial<YoutubeInfoJsonType>> = (props) => {
 
     return (
         <Grid
-            height='150px'
+            height='200px'
             templateColumns='repeat(7, 1fr)'
             gap={4}
         >
             <GridItem sx={s__thumbnailPreview} colSpan={3}>
-                <Skeleton isLoaded={!isSkeleton}>
+                <Skeleton width='100%' isLoaded={!isSkeleton}>
                     <Image
+                        height='200px'
                         objectFit='contain'
                         src={props.thumbnail_src}
                         alt='youtube thumbnail'

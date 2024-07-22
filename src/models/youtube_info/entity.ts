@@ -8,6 +8,18 @@ export default class YoutubeInfoEntity {
         private readonly _channel_name: string
     ) {}
 
+    get title(): string {
+        return this._title;
+    }
+
+    get thumbnail_src(): string {
+        return this._thumbnail_src;
+    }
+
+    get channel_name(): string {
+        return this._channel_name;
+    }
+
     json(): YoutubeInfoJsonType {
         return {
             title       : this._title,

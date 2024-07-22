@@ -1,5 +1,6 @@
+'use client';
 import { useState } from "react";
-import { ChakraProvider, Stack, Grid, GridItem, Button } from "@chakra-ui/react";
+import { ChakraProvider, Stack, Grid, GridItem, Button, useToast } from "@chakra-ui/react";
 import { ArrowDownIcon, RepeatIcon } from "@chakra-ui/icons";
 
 import UrlForm from "./UrlForm";
@@ -7,27 +8,49 @@ import Preview from "./Preview";
 import SaveNameForm from "./SavenameForm";
 import FormatForm from "./FormatForm";
 
+import YoutubeInfoEntity from "@domain/youtube_info/entity";
+import ConvertInfoEntity from "@domain/convert_info/entity";
+import SearchForYoutubeUseCase from "@usecase/SearchForYoutube";
+
 const SetMovieForm: React.FC = () => {
-    const [youtube_info, setYoutubeInfo] = useState({});
+    const errorToast = useToast();
+    const [youtube_info, setYoutubeInfo] = useState<YoutubeInfoEntity>();
+    const [convert_info, setConvertInfo] = useState<ConvertInfoEntity>();
 
     return (
         <Stack spacing={4}>
             <UrlForm 
-                onSearch={(url)=>console.log(url)} 
+                onSearch={
+                    async (url) => {
+                        new SearchForYoutubeUseCase({url}).execute()
+                            .then(resultYoutubeInfo =>
+                                setYoutubeInfo(resultYoutubeInfo)
+                            ).catch(e => {
+                                errorToast({
+                                    title: 'エラー',
+                                    description: '動画情報の取得に失敗しました',
+                                    status: 'error',
+                                    duration: 3000,
+                                    isClosable: true,
+                                });
+                                console.error(e);
+                            });
+                    }
+                }
                 btnIsLoading={false}
             />
             <Preview 
-                // title={}
-                // thumbnail_src={}
-                // channel_name={}
+                title        ={youtube_info?.title}
+                thumbnail_src={youtube_info?.thumbnail_src}
+                channel_name ={youtube_info?.channel_name}
             />
-            <SaveNameForm 
+            <SaveNameForm
                 onSetValue={(savename) => console.log(savename)} 
-                isDisabled={false}
+                isDisabled={!Boolean(youtube_info)}
             />
             <FormatForm 
                 onSetValue={(savename) => console.log(savename)} 
-                isDisabled={false}
+                isDisabled={!Boolean(youtube_info)}
             />
             
             <Grid templateColumns='repeat(1, 1fr)' gap={4}>
