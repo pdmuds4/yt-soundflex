@@ -14,7 +14,10 @@ import MovieEntity from "@domain/movie/entity";
 import { SearchForYoutubeUseCase, CreateConvertInfoUseCase, ChangeConvertInfoUseCase } from "@usecase";
 
 const SetMovieForm: React.FC<{
-    onGetMovieEntity: (movie: MovieEntity) => void
+    onGetMovieEntity: (
+        youtube_info: YoutubeInfoEntity, 
+        convert_info: ConvertInfoEntity
+    ) => void
 }> = (props) => {
     const errorToast = useToast();
     const [youtube_info, setYoutubeInfo] = useState<YoutubeInfoEntity>();
@@ -44,6 +47,7 @@ const SetMovieForm: React.FC<{
                 btnIsLoading={false}
             />
             <Preview 
+            
                 title        ={youtube_info?.title}
                 thumbnail_src={youtube_info?.thumbnail_src}
                 channel_name ={youtube_info?.channel_name}
@@ -76,9 +80,10 @@ const SetMovieForm: React.FC<{
                         size='md'
                         colorScheme="red"
                         rightIcon={<ArrowDownIcon />}
-                        onClick = {()=>{
-                            props.onGetMovieEntity
-                        }}
+                        onClick = {()=>props.onGetMovieEntity(
+                            youtube_info as YoutubeInfoEntity, 
+                            convert_info as ConvertInfoEntity
+                        )}
                         isDisabled={Boolean(!convert_info || convert_info?.inUndefined())}
                     >リストに追加</Button>
                 </GridItem>
