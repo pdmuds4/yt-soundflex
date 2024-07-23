@@ -2,6 +2,7 @@ import Id from './_id';
 import YoutubeInfo from '../youtube_info/entity';
 import ConvertInfo from '../convert_info/entity';
 import type { MovieJsonType } from './jsonType';
+import { ConvertInfoJsonType } from '@domain/convert_info/jsonType';
 
 export default class MovieEntity {
     constructor(
@@ -26,7 +27,7 @@ export default class MovieEntity {
         return {
             id: this._id.value,
             youtube_info: this._youtube_info.json(),
-            convert_info: this._convert_info.json()
+            convert_info: this._convert_info.json() as ConvertInfoJsonType
         }
     }
 

@@ -10,8 +10,12 @@ import FormatForm from "./FormatForm";
 
 import YoutubeInfoEntity from "@domain/youtube_info/entity";
 import ConvertInfoEntity from "@domain/convert_info/entity";
+import MovieEntity from "@domain/movie/entity";
 import { SearchForYoutubeUseCase, CreateConvertInfoUseCase, ChangeConvertInfoUseCase } from "@usecase";
-const SetMovieForm: React.FC = () => {
+
+const SetMovieForm: React.FC<{
+    onGetMovieEntity: (movie: MovieEntity) => void
+}> = (props) => {
     const errorToast = useToast();
     const [youtube_info, setYoutubeInfo] = useState<YoutubeInfoEntity>();
     const [convert_info, setConvertInfo] = useState<ConvertInfoEntity>();
@@ -72,7 +76,9 @@ const SetMovieForm: React.FC = () => {
                         size='md'
                         colorScheme="red"
                         rightIcon={<ArrowDownIcon />}
-                        // onClick = {}
+                        onClick = {()=>{
+                            props.onGetMovieEntity
+                        }}
                         isDisabled={Boolean(!convert_info || convert_info?.inUndefined())}
                     >リストに追加</Button>
                 </GridItem>

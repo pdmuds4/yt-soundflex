@@ -1,6 +1,6 @@
 "use client";
 import { Box, Grid, GridItem } from '@chakra-ui/react';
-import { Header, SetMovieForm, MoviesTable } from '@component';
+import { Header, SetMovieForm, MoviesList } from '@component';
 
 const Index: React.FC = () => {
 	return (
@@ -15,10 +15,10 @@ const Index: React.FC = () => {
 					gap={5}
 				>
 					<GridItem>
-						<SetMovieForm />
+						<SetMovieForm onGetMovieEntity={(movie) => console.log(movie.json())} />
 					</GridItem>
 					<GridItem>
-						<MoviesTable />
+						<MoviesList />
 					</GridItem>
 				</Grid>
 			</Box>
