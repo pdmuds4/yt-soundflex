@@ -20,6 +20,10 @@ export default class ConvertInfoEntity {
         return this._savename
     }
     
+    inUndefined(): boolean {
+        return this._format && this._savename && this._savename.value !== '' ? false : true
+    }
+
     json(): Partial<ConvertInfoJsonType> {
         return {
             url     : this._url.value,

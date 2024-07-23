@@ -11,7 +11,6 @@ import FormatForm from "./FormatForm";
 import YoutubeInfoEntity from "@domain/youtube_info/entity";
 import ConvertInfoEntity from "@domain/convert_info/entity";
 import { SearchForYoutubeUseCase, CreateConvertInfoUseCase, ChangeConvertInfoUseCase } from "@usecase";
-
 const SetMovieForm: React.FC = () => {
     const errorToast = useToast();
     const [youtube_info, setYoutubeInfo] = useState<YoutubeInfoEntity>();
@@ -28,10 +27,10 @@ const SetMovieForm: React.FC = () => {
                                 setConvertInfo(CreateConvertInfoUseCase.execute(url));
                             }).catch(e => {
                                 errorToast({
-                                    title: 'エラー',
-                                    description: '動画情報の取得に失敗しました',
+                                    title: 'エラー:動画情報の取得に失敗しました',
+                                    description: e instanceof Error ? e.message : '原因不明のエラー',
                                     status: 'error',
-                                    duration: 3000,
+                                    duration: 5000,
                                     isClosable: true,
                                 });
                                 console.error(e);
@@ -46,8 +45,7 @@ const SetMovieForm: React.FC = () => {
                 channel_name ={youtube_info?.channel_name}
             />
             <SaveNameForm
-                defaultValue={youtube_info?.title}
-                onSetValue={(savename) => {
+                onGetValue={(savename) => {
                     if (convert_info) 
                         setConvertInfo(
                             new ChangeConvertInfoUseCase(convert_info)
@@ -57,7 +55,7 @@ const SetMovieForm: React.FC = () => {
                 isDisabled={!Boolean(youtube_info)}
             />
             <FormatForm 
-                onSetValue={(format) => {
+                onGetValue={(format) => {
                     if (convert_info) 
                         setConvertInfo(
                             new ChangeConvertInfoUseCase(convert_info)
@@ -75,7 +73,7 @@ const SetMovieForm: React.FC = () => {
                         colorScheme="red"
                         rightIcon={<ArrowDownIcon />}
                         // onClick = {}
-                        // isDisabled={}
+                        isDisabled={Boolean(!convert_info || convert_info?.inUndefined())}
                     >リストに追加</Button>
                 </GridItem>
                 { // [TODO]親から子内のイベントを発火させる方法を検討

@@ -7,9 +7,9 @@ export default class SearchForYoutubeUseCase {
         private request: GetYoutubeInfoRequestType
     ){}
 
-    async execute(): Promise<YoutubeInfoEntity> {
+    async execute(api_key?: string): Promise<YoutubeInfoEntity> {
         const response = await callAPI<GetYoutubeInfoRequestType>(
-            process.env.API_KEY ? process.env.API_KEY : '',
+            process.env.NEXT_PUBLIC_API_KEY as string,
             'POST',
             '/api/get_youtube_info',
             this.request
