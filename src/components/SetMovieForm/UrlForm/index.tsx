@@ -14,7 +14,7 @@ const UrlForm: React.FC<{
     return (
         <InputGroup>
             <Input 
-                placeholder='https://www.youtube.com/...'
+                placeholder='YoutubeのURLを入力'
                 focusBorderColor='#ff0026'
                 onChange={(e) => {
                     setInputValue(e.target.value);
