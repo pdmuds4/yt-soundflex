@@ -21,7 +21,6 @@ const MoviesList: React.FC<{
     onReset:  () => void;
     onDelete: (id: MovieJsonType['id']) => void;
 }> = (props) => {
-    // const [download_info, setDlInfo] = useState<{src: string, savename: string}[]>([]);
     const downloadRef = useRef<HTMLAnchorElement>(null);
     const ffmpegRef = useRef(new GetConvertedUrlUseCase(new FFmpeg()));
 
@@ -38,7 +37,7 @@ const MoviesList: React.FC<{
                     wasmURL: await toBlobURL(`${baseURL}/ffmpeg-core.wasm`, 'application/wasm')
                 });
             })();
-        },[]
+        }
     )
 
     return (
@@ -49,8 +48,9 @@ const MoviesList: React.FC<{
                     size='md'
                     colorScheme="green"
                     rightIcon={<DownloadIcon />}
-                    onClick = {() => {
-                        Promise.all(
+                    onClick = {async() => {
+                        console.log('download Start');
+                        await Promise.all(
                             props.movies_data.getAll().map(async (movie)=> {
                                 const dl_src = await ffmpegRef.current.execute(movie.convertInfo)
                                 if (downloadRef.current) {
@@ -60,6 +60,7 @@ const MoviesList: React.FC<{
                                 }
                             })
                         )
+                        console.log('download End');
                     }}
                     isDisabled={props.movies_data.isEmpty()}
                 >ダウンロード</Button>
