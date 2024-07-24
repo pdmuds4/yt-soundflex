@@ -3,11 +3,12 @@ import { useRef, useState, useEffect } from "react";
 import { FFmpeg } from "@ffmpeg/ffmpeg";
 import { toBlobURL } from "@ffmpeg/util";
 
-import { Grid, GridItem, Button } from "@chakra-ui/react";
+import { Grid, GridItem, Button, useDisclosure } from "@chakra-ui/react";
 import { DownloadIcon, RepeatIcon } from "@chakra-ui/icons";
 
 import MoviesTable from "./MoviesTable";
 import MovieTableData from "./MovieTableData";
+import LoadingModal from "./LoadingModal";
 
 import MovieRepository from "@domain/movie/repository";
 import MovieEntity from "@domain/movie/entity";
@@ -21,8 +22,10 @@ const MoviesList: React.FC<{
     onReset:  () => void;
     onDelete: (id: MovieJsonType['id']) => void;
 }> = (props) => {
+    const { isOpen, onOpen, onClose } = useDisclosure();
     const downloadRef = useRef<HTMLAnchorElement>(null);
     const ffmpegRef = useRef(new GetConvertedUrlUseCase(new FFmpeg()));
+    const [dl_progress, setDlProgress] = useState(0);
 
     useEffect(
         () => {
@@ -30,7 +33,7 @@ const MoviesList: React.FC<{
                 const baseURL = 'https://unpkg.com/@ffmpeg/core@0.12.6/dist/umd';
                 const ffmpeg = ffmpegRef.current.ffmpeg_instance;
                 ffmpeg.on('progress', ({ progress, time }) => {
-                    console.log(progress, time);
+                    setDlProgress(progress);
                 });
                 await ffmpeg.load({
                     coreURL: await toBlobURL(`${baseURL}/ffmpeg-core.js`, 'text/javascript'),
@@ -50,6 +53,8 @@ const MoviesList: React.FC<{
                     rightIcon={<DownloadIcon />}
                     onClick = {async() => {
                         console.log('download Start');
+                        onOpen();
+                        setDlProgress(0);
                         await Promise.all(
                             props.movies_data.getAll().map(async (movie)=> {
                                 const dl_src = await ffmpegRef.current.execute(movie.convertInfo)
@@ -60,6 +65,7 @@ const MoviesList: React.FC<{
                                 }
                             })
                         )
+                        onClose();
                         console.log('download End');
                     }}
                     isDisabled={props.movies_data.isEmpty()}
@@ -68,6 +74,7 @@ const MoviesList: React.FC<{
                     ref={downloadRef}
                     hidden
                 ></a>
+                <LoadingModal progress={dl_progress*100} isOpen={isOpen} onClose={onClose} />
             </GridItem>
             <GridItem colSpan={1}>
                 <Button 
