@@ -7,12 +7,12 @@ const LoadingModal: React.FC<{
     onClose: () => void,
 }> = (props) => {
     return (
-        <Modal isOpen={props.isOpen} onClose={props.onClose} isCentered>
+        <Modal closeOnOverlayClick={false} isOpen={props.isOpen} onClose={props.onClose} isCentered>
             <ModalOverlay />
             <ModalContent>
                 <ModalHeader>ダウンロード中...</ModalHeader>
                 <ModalBody padding="3vw">
-                    <Progress value={props.progress} />
+                    <Progress hasStripe value={props.progress} />
                 </ModalBody>
             </ModalContent>
         </Modal>
