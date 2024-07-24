@@ -1,7 +1,10 @@
 "use client";
 import { useState } from 'react';
+import dynamic from 'next/dynamic';
+
 import { Box, Grid, GridItem } from '@chakra-ui/react';
-import { Header, SetMovieForm, MoviesList } from '@component';
+import { Header, SetMovieForm } from '@component';
+const MoviesList = dynamic(() => import('../components/MoviesList'), { ssr: false });
 
 import MovieId from '@domain/movie/_id';
 import MovieRepository from '@domain/movie/repository';

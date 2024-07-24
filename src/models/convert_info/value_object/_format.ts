@@ -1,11 +1,13 @@
-export default class ConvertInfoFormat {
-    private readonly _value: 'mp3'| 'ogg' | 'wav' | 'mp4a';
+import { ConvertInfoJsonType } from "../jsonType";
 
-    constructor(value: 'mp3'| 'ogg' | 'wav' | 'mp4a') {
+export default class ConvertInfoFormat {
+    private readonly _value: ConvertInfoJsonType['format'];
+
+    constructor(value: ConvertInfoJsonType['format']) {
         this._value = value;
     }
 
-    get value(): 'mp3'| 'ogg' | 'wav' | 'mp4a' {
+    get value(): ConvertInfoJsonType['format'] {
         return this._value;
     }
 }
