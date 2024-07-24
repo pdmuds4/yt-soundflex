@@ -1,6 +1,7 @@
 import { ChakraProvider, TableContainer, Table, Thead, Tbody, Tr, Th } from "@chakra-ui/react";
+import { PropsWithChildren } from "react";
 
-const MoviesTable: React.FC = () => {
+const MoviesTable: React.FC<PropsWithChildren> = (props) => {
     return (
         <TableContainer>
             <Table size='sm' variant='striped'>
@@ -8,12 +9,12 @@ const MoviesTable: React.FC = () => {
                     <Tr>
                         <Th></Th>
                         <Th>サムネイル</Th>
-                        <Th>保存ファイル名</Th>
-                        <Th>保存フォーマット</Th>
+                        <Th>ファイル名</Th>
+                        <Th>形式</Th>
                     </Tr>
                 </Thead>
                 <Tbody>
-                    { /* <MovieTableData /> */ }
+                    { props.children }
                 </Tbody>
             </Table>
         </TableContainer>

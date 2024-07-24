@@ -7,8 +7,8 @@ import MovieId from "@domain/movie/_id";
 export default class CreateMovieUseCase {
     static execute(
         id: MovieId,
-        convert_info: ConvertInfoEntity,
         youtube_info: YoutubeInfoEntity,
+        convert_info: ConvertInfoEntity
     ): MovieEntity {
         return new MovieEntity(id, youtube_info, convert_info);
     }

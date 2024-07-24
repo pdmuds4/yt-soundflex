@@ -10,7 +10,6 @@ import FormatForm from "./FormatForm";
 
 import YoutubeInfoEntity from "@domain/youtube_info/entity";
 import ConvertInfoEntity from "@domain/convert_info/entity";
-import MovieEntity from "@domain/movie/entity";
 import { SearchForYoutubeUseCase, CreateConvertInfoUseCase, ChangeConvertInfoUseCase } from "@usecase";
 
 const SetMovieForm: React.FC<{

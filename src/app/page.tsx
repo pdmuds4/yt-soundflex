@@ -6,11 +6,9 @@ import { Header, SetMovieForm, MoviesList } from '@component';
 import MovieId from '@domain/movie/_id';
 import MovieRepository from '@domain/movie/repository';
 import { CreateMovieUseCase } from '@usecase';
-import MovieEntity from '@domain/movie/entity';
 
 const Index: React.FC = () => {
 	const [movies, moviesSet] = useState<MovieRepository>(new MovieRepository([]));
-
 
 	return (
 		<>
@@ -28,13 +26,17 @@ const Index: React.FC = () => {
 							onGetMovieEntity={(youtube_info, convert_info) => {
 								const new_id = new MovieId(movies.getLastId()+1)
 								moviesSet(
-									movies.save(new MovieEntity(new_id, youtube_info, convert_info))
+									movies.save(CreateMovieUseCase.execute(new_id, youtube_info, convert_info))
 								)
 							}
 						} />
 					</GridItem>
 					<GridItem>
-						<MoviesList />
+						<MoviesList 
+							movies_data={movies}
+							onReset={() => console.log('reset')}
+							onDelete={(id) => console.log('delete', id)}
+						/>
 					</GridItem>
 				</Grid>
 			</Box>
