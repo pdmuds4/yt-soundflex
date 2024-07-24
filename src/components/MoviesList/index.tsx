@@ -60,7 +60,11 @@ const MoviesList: React.FC<{
                                 const dl_src = await ffmpegRef.current.execute(movie.convertInfo)
                                 if (downloadRef.current) {
                                     downloadRef.current.href = dl_src;
-                                    downloadRef.current.download = movie.convertInfo.savename?.value as ConvertInfoJsonType['savename'];
+                                    downloadRef.current.download = `${
+                                            movie.convertInfo.savename?.value
+                                        }.${
+                                            movie.convertInfo.format?.value
+                                        }`;
                                     downloadRef.current.click();
                                 }
                             })
