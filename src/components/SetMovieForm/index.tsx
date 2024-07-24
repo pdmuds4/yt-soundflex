@@ -1,5 +1,6 @@
+'use client';
 import { useState } from "react";
-import { ChakraProvider, Stack, Grid, GridItem, Button } from "@chakra-ui/react";
+import { ChakraProvider, Stack, Grid, GridItem, Button, useToast } from "@chakra-ui/react";
 import { ArrowDownIcon, RepeatIcon } from "@chakra-ui/icons";
 
 import UrlForm from "./UrlForm";
@@ -7,27 +8,68 @@ import Preview from "./Preview";
 import SaveNameForm from "./SavenameForm";
 import FormatForm from "./FormatForm";
 
-const SetMovieForm: React.FC = () => {
-    const [youtube_info, setYoutubeInfo] = useState({});
+import YoutubeInfoEntity from "@domain/youtube_info/entity";
+import ConvertInfoEntity from "@domain/convert_info/entity";
+import { SearchForYoutubeUseCase, CreateConvertInfoUseCase, ChangeConvertInfoUseCase } from "@usecase";
+
+const SetMovieForm: React.FC<{
+    onGetMovieEntity: (
+        youtube_info: YoutubeInfoEntity, 
+        convert_info: ConvertInfoEntity
+    ) => void
+}> = (props) => {
+    const errorToast = useToast();
+    const [youtube_info, setYoutubeInfo] = useState<YoutubeInfoEntity>();
+    const [convert_info, setConvertInfo] = useState<ConvertInfoEntity>();
 
     return (
         <Stack spacing={4}>
             <UrlForm 
-                onSearch={(url)=>console.log(url)} 
+                onSearch={
+                    async (url) => {
+                        new SearchForYoutubeUseCase({url}).execute()
+                            .then(resultYoutubeInfo => {
+                                setYoutubeInfo(resultYoutubeInfo)
+                                setConvertInfo(CreateConvertInfoUseCase.execute(url));
+                            }).catch(e => {
+                                errorToast({
+                                    title: 'エラー:動画情報の取得に失敗しました',
+                                    description: e instanceof Error ? e.message : '原因不明のエラー',
+                                    status: 'error',
+                                    duration: 5000,
+                                    isClosable: true,
+                                });
+                                console.error(e);
+                            });
+                    }
+                }
                 btnIsLoading={false}
             />
             <Preview 
-                // title={}
-                // thumbnail_src={}
-                // channel_name={}
+            
+                title        ={youtube_info?.title}
+                thumbnail_src={youtube_info?.thumbnail_src}
+                channel_name ={youtube_info?.channel_name}
             />
-            <SaveNameForm 
-                onSetValue={(savename) => console.log(savename)} 
-                isDisabled={false}
+            <SaveNameForm
+                onGetValue={(savename) => {
+                    if (convert_info) 
+                        setConvertInfo(
+                            new ChangeConvertInfoUseCase(convert_info)
+                                .executeForSaveName(savename)
+                        )
+                    }} 
+                isDisabled={!Boolean(youtube_info)}
             />
             <FormatForm 
-                onSetValue={(savename) => console.log(savename)} 
-                isDisabled={false}
+                onGetValue={(format) => {
+                    if (convert_info) 
+                        setConvertInfo(
+                            new ChangeConvertInfoUseCase(convert_info)
+                                .executeForFormat(format)
+                        )
+                    }} 
+                isDisabled={!Boolean(youtube_info)}
             />
             
             <Grid templateColumns='repeat(1, 1fr)' gap={4}>
@@ -37,7 +79,11 @@ const SetMovieForm: React.FC = () => {
                         size='md'
                         colorScheme="red"
                         rightIcon={<ArrowDownIcon />}
-                        // onClick = {}
+                        onClick = {()=>props.onGetMovieEntity(
+                            youtube_info as YoutubeInfoEntity, 
+                            convert_info as ConvertInfoEntity
+                        )}
+                        isDisabled={Boolean(!convert_info || convert_info?.inUndefined())}
                     >リストに追加</Button>
                 </GridItem>
                 { // [TODO]親から子内のイベントを発火させる方法を検討

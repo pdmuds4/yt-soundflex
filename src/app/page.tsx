@@ -1,13 +1,23 @@
 "use client";
+import { useState } from 'react';
+import dynamic from 'next/dynamic';
+
 import { Box, Grid, GridItem } from '@chakra-ui/react';
-import { Header, SetMovieForm, MoviesTable } from '@component';
+import { Header, SetMovieForm } from '@component';
+const MoviesList = dynamic(() => import('../components/MoviesList'), { ssr: false });
+
+import MovieId from '@domain/movie/_id';
+import MovieRepository from '@domain/movie/repository';
+import { CreateMovieUseCase } from '@usecase';
 
 const Index: React.FC = () => {
+	const [movies, setMovies] = useState<MovieRepository>(new MovieRepository([]));
+
 	return (
 		<>
 			<Header />
 			<Box 
-				sx={{padding: '20vh 5vw 0 5vw'}} 
+				sx={{padding: '20vh 5vw 20vh 5vw'}} 
 				overflowX={{base: 'scroll', sm: 'hidden'}}
 			>	
 				<Grid 
@@ -15,10 +25,21 @@ const Index: React.FC = () => {
 					gap={5}
 				>
 					<GridItem>
-						<SetMovieForm />
+						<SetMovieForm 
+							onGetMovieEntity={(youtube_info, convert_info) => {
+								const new_id = new MovieId(movies.getLastId()+1)
+								setMovies(
+									movies.save(CreateMovieUseCase.execute(new_id, youtube_info, convert_info))
+								)
+							}
+						} />
 					</GridItem>
 					<GridItem>
-						<MoviesTable />
+						<MoviesList 
+							movies_data={movies}
+							onReset={() => setMovies(movies.deleteAll())}
+							onDelete={(id) => setMovies(movies.delete(id))}
+						/>
 					</GridItem>
 				</Grid>
 			</Box>

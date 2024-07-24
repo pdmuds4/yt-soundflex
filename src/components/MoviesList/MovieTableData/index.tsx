@@ -1,15 +1,27 @@
 import { ChakraProvider, Button, Tr, Td, Image, Badge, Text } from "@chakra-ui/react";
 import { DeleteIcon } from "@chakra-ui/icons";
 
-const MovieTableData: React.FC = () => {
+import { YoutubeInfoJsonType } from "@domain/youtube_info/jsonType";
+import { ConvertInfoJsonType } from "@domain/convert_info/jsonType";
+
+const MovieTableData: React.FC<{
+    thumbnail_src: YoutubeInfoJsonType['thumbnail_src'];
+    savename: ConvertInfoJsonType['savename'];
+    format: ConvertInfoJsonType['format'];
+    onDelete: () => void;
+    // onEdit: () => void;
+}> = (props) => {
     return (
-        <Tr>
+        <Tr 
+            // [TODO] 編集モードを有効にする
+            // onDoubleClick={null} 
+        >
             <Td maxW="50px">
                 <Button
                     maxW='20px'
                     size='md' 
                     colorScheme="red"
-                    // onClick = {}
+                    onClick = {props.onDelete}
                 >
                     <DeleteIcon/>
                 </Button>
@@ -18,25 +30,24 @@ const MovieTableData: React.FC = () => {
                 <Image
                     maxW='80px'
                     borderRadius='md'
-                    src={''}
+                    src={props.thumbnail_src}
                     alt='youtube sumbnail'
                 />
             </Td>
-            <Td maxW='150px'>
+            <Td maxW='200px'>
                 <Text 
                     noOfLines={0.5}
-                    // onDoubleClick={}
                 >
-                    {}
+                    {props.savename}
                 </Text>
             </Td>
-            <Td isNumeric>
+            <Td isTruncated>
                 <Badge 
+                    size='lg'
                     variant='solid' 
                     colorScheme='green'
-                    // onDoubleClick={}
                 >
-                    {}
+                    {props.format}
                 </Badge>
             </Td>
         </Tr>

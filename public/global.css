@@ -1,5 +1,6 @@
 body {
     padding: 0;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
     background-image: linear-gradient(90deg, #ff92a3, #ff5454);
 }

@@ -3,24 +3,32 @@ import type { ConvertInfoJsonType } from "./jsonType";
 
 export default class ConvertInfoEntity {
     constructor(
-        private readonly _url       : Url,
-        private          format     : Format,
-        private          savename   : SaveName,
+        private readonly _url        : Url,
+        private          _format?    : Format,
+        private          _savename?  : SaveName,
     ) {}
 
-    set newFormat(format: Format) {
-        this.format = format
+    get url(): Url {
+        return this._url
     }
 
-    set newSaveName(savename: SaveName) {
-        this.savename = savename
+    get format(): Format | undefined {
+        return this._format
+    }
+
+    get savename(): SaveName | undefined {
+        return this._savename
     }
     
-    json(): ConvertInfoJsonType {
+    inUndefined(): boolean {
+        return this._format && this._savename && this._savename.value !== '' ? false : true
+    }
+
+    json(): Partial<ConvertInfoJsonType> {
         return {
             url     : this._url.value,
-            format  : this.format.value,
-            savename: this.savename.value,
+            format  : this._format?.value,
+            savename: this._savename?.value,
         }
     }
 }

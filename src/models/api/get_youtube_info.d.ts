@@ -4,6 +4,6 @@ export type GetYoutubeInfoRequestType = {
 
 export type GetYoutubeInfoResponseType = {
     title: string
-    thumnail_src: string
+    thumbnail_src: string
     channnel_name: string
 }
