@@ -34,14 +34,14 @@ const MovieTableData: React.FC<{
                     alt='youtube sumbnail'
                 />
             </Td>
-            <Td maxW='150px'>
+            <Td maxW='200px'>
                 <Text 
                     noOfLines={0.5}
                 >
                     {props.savename}
                 </Text>
             </Td>
-            <Td maxW='50px' isTruncated>
+            <Td isTruncated>
                 <Badge 
                     size='lg'
                     variant='solid' 

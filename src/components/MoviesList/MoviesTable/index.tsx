@@ -1,11 +1,12 @@
 import { ChakraProvider, TableContainer, Table, Thead, Tbody, Tr, Th } from "@chakra-ui/react";
 import { PropsWithChildren } from "react";
+import { s__MoviesTableContainer, s__MoviesTableHeader } from "./style";
 
 const MoviesTable: React.FC<PropsWithChildren> = (props) => {
     return (
-        <TableContainer>
+        <TableContainer sx={s__MoviesTableContainer}>
             <Table size='sm' variant='striped'>
-                <Thead>
+                <Thead sx={s__MoviesTableHeader}>
                     <Tr>
                         <Th></Th>
                         <Th>サムネイル</Th>
