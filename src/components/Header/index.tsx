@@ -12,7 +12,7 @@ const Header: React.FC = () => {
                 colorScheme='blackAlpha'
                 // onClick={}
             >
-                <Img sx={s__headerIcon} src='icon.svg' />
+                <Img sx={s__headerIcon} src='logo.svg' />
                 <Heading fontSize={{base: 'x-large', sm: 'xx-large'}}>YoutubeSoundFlex</Heading>
             </Button>
         </Box>
