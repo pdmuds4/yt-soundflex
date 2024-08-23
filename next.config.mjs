@@ -4,7 +4,7 @@ const nextConfig = {
         return [
             {
                 source: '/api/:slug*',
-                destination: 'https://python-tinyapi-sagh.onrender.com/ytflex/:slug*',
+                destination: 'https://ry4h7lzk33rmmxdeubkg2mzxmq0kjdrt.lambda-url.ap-northeast-1.on.aws/:slug*',
             },
         ]
     },

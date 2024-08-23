@@ -22,18 +22,18 @@ app.add_middleware(
 )
 
 
-# @app.middleware("http")
-# async def api_key_middleware(request: Request, call_next):
-#     api_key = request.headers.get("X-API-Key")
-#     if request.url.path not in ["/", "/docs", "/openapi.json"]:
-#         if api_key is None:
-#             return JSONResponse(status_code=400, content={"message": "Missing API Key"})
-#         elif api_key != os.environ.get('API_KEY'):
-#             return JSONResponse(status_code=401, content={"message": "Invalid API Key"})
-#         else:
-#             return await call_next(request)
-#     else:
-#         return await call_next(request)
+@app.middleware("http")
+async def api_key_middleware(request: Request, call_next):
+    api_key = request.headers.get("X-API-Key")
+    if request.url.path not in ["/", "/docs", "/openapi.json"]:
+        if api_key is None:
+            return JSONResponse(status_code=400, content={"message": "Missing API Key"})
+        elif api_key != os.environ.get('API_KEY'):
+            return JSONResponse(status_code=401, content={"message": "Invalid API Key"})
+        else:
+            return await call_next(request)
+    else:
+        return await call_next(request)
 
 
 

@@ -12,13 +12,10 @@ export default class GetConvertedUrlUseCase {
     ){}
 
     async execute(convert_info: ConvertInfoEntity): Promise<string> {
-        const request: EncodeWebmRequestType = { url : convert_info.url.value };
-
         const response = await callAPI<EncodeWebmRequestType>(
             process.env.NEXT_PUBLIC_API_KEY as string,
-            'POST',
-            '/api/encode_webm',
-            request
+            'GET',
+            '/api/encode_webm?url=' + convert_info.url.value
         ) satisfies EncodeWebmResponseType;
 
         const request_format = convert_info.format?.value;

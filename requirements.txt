@@ -4,3 +4,4 @@ mangum
 pytubefix
 pydantic
 python-dotenv
+requests
