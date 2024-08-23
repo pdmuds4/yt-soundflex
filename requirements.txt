@@ -1,0 +1,6 @@
+fastapi
+uvicorn
+mangum
+pytubefix
+pydantic
+python-dotenv
